@@ -1,9 +1,10 @@
 import random
 import numpy as np
 n = int(input("원하는 배열크기를 입력하세요 : n"))
-list1 = np.full((n,n),'0')
-list2 = [] # T가 들어간 곳
-list3 = [] # i,j를 중점으로 5by5구역
+
+list1 = np.full((n,n),'O')
+list2 = [] # T가 들어간 곳 리스트
+list3 = [] # i,j를 중점으로 5by5구역 리스트
 addRow = [-1,1,0,0]
 addCol = [0,0,1,-1]
 count=0
@@ -44,49 +45,40 @@ def pick():
 def random_walker():
     while True:
         
-        z = random.randint(0,n-1)
-        v = random.randint(0,n-1)
-        if (z,v) not in list2:
-            list1[z][v] = 'X'
+        x = random.randint(0,n-1)
+        y = random.randint(0,n-1)
+        if (x,y) not in list2:
+            list1[x][y] = 'X'
             print(list1)
             break
-        if (z,v) in list2:
+        if (x,y) in list2:
             continue
            
     while True:
-        
-        L = input("p를 누르세요")
-        if L == 'p':
-            
-            while True:
-                x = random.randint(-1,1)
-                y = random.randint(-1,1)
-                if(x,y) ==(0,0) or (x,y) ==(1,1) or (x,y) == (-1,-1) or (x,y) == (1,-1) or (x,y) ==(-1,1):
-                    continue
-                if (z+x,v+y) in list2:
-                    continue
-
-                if (z+x,v+y) not in list2:
-                    if (z,v) not in list2:
-                        if ((z+x>-1 and z+x<n and v+y>-1 and v+y<n))and((z>-1 and z<n and v>-1 and v<n)):
-                            list1[z][v] = '0'
-                            list1[z+x][v+y] = 'X'
-                            z = z+x
-                            v = v+x
-                            print(list1)
-                            break
+        L = input("아무키나 누르세요")
         if L == 'q':
             break
+        while True:
+            c = random.randint(0,3)
+            new_x = x + addRow[c]
+            new_y = y + addCol[c]
+            if (new_x,new_y) not in list2 and new_x>-1 and new_y >-1 and new_x<n and new_y<n:
+                break
+            if (new_x,new_y) in list2:
+                continue
+        list1[x][y],list1[new_x][new_y] = 'O','X'
+        x,y = new_x,new_y
+        print(list1)
+    
+
+          
+                
+        
+        
 
         
         
     
+
 pick()
 random_walker()
-    
-
-
-
-
-# if (i,j) not in list3:
-        
