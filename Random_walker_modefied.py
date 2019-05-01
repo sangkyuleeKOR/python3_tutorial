@@ -56,23 +56,3 @@ def run():
                 
 if __name__ == "__main__":
     run()
-
-
-
-    
-        
-
-
-
-
-
-
-
-    
-
-
-'''
-def main():
-    size_x = int(input("가로길이를 입력하세요"))
-    size_y = int(input("세로길이를 입력하세요"))
-'''   
